@@ -139,3 +139,31 @@ module.exports.adminProfileUpdate = async (req, res) => {
     }
 
 }
+
+// all Account details admin can see
+module.exports.allAccountDetails = async(req,res) => 
+{
+    try{
+        const accountDetails = await Account.findAll()
+        res.json(new ResponseModel(accountDetails));
+    }
+    catch(err)
+    {
+        res.json(err)
+    }
+
+}
+
+//all loan details admin can see
+module.exports.allLoanDetails = async(req,res) => 
+{
+    try{
+        const loanDetails = await Loan.findAll()
+        res.json(new ResponseModel(loanDetails));
+    }
+    catch(err)
+    {
+        res.json(err)
+    }
+
+}

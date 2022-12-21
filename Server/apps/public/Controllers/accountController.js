@@ -4,44 +4,76 @@ const tokenHandler = require('../../../utilities/tokenHandler')
 
 
 
+// module.exports.login = async (req, res) => {
+//     const { email, password } = req.body;
+//     console.log(req.body)
+
+
+//    const userData= await User.findOne(
+//         {
+//             where : {
+//                 email : email,
+//                 password : password
+//             }
+//         }
+//     )
+//     if(userData==null){
+//         const bankData= await Bank.findOne(
+//             {
+//                 where : {
+//                     email : email,
+//                     password : password
+//                 }
+//             }
+//         )
+//         if(bankData==null){
+//             res.json(new ResponseModel(null, null, ['User not found']))
+
+//         }
+//         else{
+//            const token=  tokenHandler.createToken({
+//                 id: bankData.id,
+//                 role: bankData.role
+//             });
+//             console.log(token)
+//             return res.json(new ResponseModel(token));
+//         }
+
+//     }
+//     else{
+//       const token =  tokenHandler.createToken({
+//             id: userData.id,
+//             role: userData.role
+//         });
+
+//         console.log(token)
+//         // res.json(new ResponseModel(userData))
+//         return res.json(new ResponseModel(token));
+//     }
+
+
+
+
+
+// }
+//User registration 
+
 module.exports.login = async (req, res) => {
-    const { email, password } = req.body;
-    console.log(req.body)
-
-
-   const userData= await User.findOne(
-        {
-            where : {
-                email : email,
-                password : password
-            }
-        }
-    )
-    if(userData==null){
-        const bankData= await Bank.findOne(
-            {
-                where : {
-                    email : email,
-                    password : password
+    const userData= await User.findOne(
+              {
+                 where : {
+                       email : req.body.email,
+                     password : req.body.password
+                     }
                 }
-            }
-        )
-        if(bankData==null){
-            res.json(new ResponseModel(null, null, ['User not found']))
+         )
+         if(userData==null){
+                  res.json(new ResponseModel(null, null, ['User not found']))
+            
+              }
+              else{
 
-        }
-        else{
-           const token=  tokenHandler.createToken({
-                id: bankData.id,
-                role: bankData.role
-            });
-            console.log(token)
-            return res.json(new ResponseModel(token));
-        }
-
-    }
-    else{
-      const token =  tokenHandler.createToken({
+            const token =  tokenHandler.createToken({
             id: userData.id,
             role: userData.role
         });
@@ -49,14 +81,10 @@ module.exports.login = async (req, res) => {
         console.log(token)
         // res.json(new ResponseModel(userData))
         return res.json(new ResponseModel(token));
-    }
 
-
-
-
+              }
 
 }
-//User registration 
 
 module.exports.register = async (req, res) => {
     try {

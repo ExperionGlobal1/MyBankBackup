@@ -7,7 +7,7 @@ const ResponseModel = require('../../../utilities/responseModel');
  */
 module.exports.userProfile = async (req, res) => {
     console.log('i am from user profile')
-    const userId = 2
+    const userId = req.user.id
     try {
         const user = await User.findByPk(userId);
         res.json(new ResponseModel(user));
@@ -32,7 +32,7 @@ module.exports.editUserProfile = (req, res, next) => {
         },
             {
                 where: {
-                    id: 2
+                    id: req.user.id
                 }
             }).then(data => {
                 res.json(new ResponseModel(data));

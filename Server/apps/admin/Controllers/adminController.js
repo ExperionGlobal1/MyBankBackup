@@ -3,7 +3,7 @@ const ResponseModel = require('../../../utilities/responseModel');
 
 module.exports.adminProfile = async (req, res) => {
     
-    const userId = 1;
+    const userId = req.user.id;
     try {
         const user = await User.findByPk(userId);
         res.json(user)
@@ -126,7 +126,7 @@ module.exports.adminProfileUpdate = async (req, res) => {
         },
             {
                 where: {
-                    id: 1
+                    id: req.user.id
                 }
             }).then(data => {
                 res.json(new ResponseModel(data));

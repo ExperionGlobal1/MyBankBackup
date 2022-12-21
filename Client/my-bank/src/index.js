@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import Adminhome from './Components/Admin/Adminhome';
-import Admin from  './Components/Admin/Admin';
+import Admin from './Components/Admin/Admin';
 import Loanapprovehome from './Components/Admin/Loanapprovehome';
 import Loanapprove from './Components/Admin/LoanApprove';
 import Accountapprovehome from './Components/Admin/Accountapprovehome'
 import Accountapprove from './Components/Admin/Accountapprove';
+import Accountdetailshome from './Components/Admin/Accountdetailshome';
+import Accountdetails from './Components/Admin/Accountdetails';
+import Loandetails from './Components/Admin/Loandetails';
 
 import reportWebVitals from './reportWebVitals';
 // import Login from "./components/Login/Login";
@@ -37,78 +40,92 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
 
-   
+
   },
-  {path: "/auth", element: <AuthLayout/> ,children: [
-		{path: "/auth/login", element: <Login/>},
-    {path: "/auth/register", element: <Register/>}
-	]},
+  {
+    path: "/auth", element: <AuthLayout />, children: [
+      { path: "/auth/login", element: <Login /> },
+      { path: "/auth/register", element: <Register /> }
+    ]
+  },
   {
     path: "/money/withdraw",
-    element: <Withdraw/>
-  
+    element: <Withdraw />
+
   },
   {
     path: "/money/deposit",
-    element: <Deposit/>
-  
+    element: <Deposit />
+
   },
   {
     path: "/user/update",
-    element: <UserProfileEdit/>
-  
+    element: <UserProfileEdit />
+
   },
   {
     path: "/admin/update",
-    element: <AdminProfileEdit/>
-  
+    element: <AdminProfileEdit />
+
   },
   {
     path: "/admin",
-    element: <Adminhome/>,children:[
-      {path:'/admin',element: <Admin/>}
+    element: <Adminhome />, children: [
+      { path: '/admin', element: <Admin /> }
     ]
   },
 
   {
     path: "/admin/loanApprove",
-    element : <Loanapprovehome/>,children:[
-      {path: '/admin/loanApprove',element :<Loanapprove/>}
+    element: <Loanapprovehome />, children: [
+      { path: '/admin/loanApprove', element: <Loanapprove /> }
     ]
   },
   {
     path: "/admin/accountApprove",
-    element : <Accountapprovehome/>,children:[
-      {path: '/admin/accountApprove',element: <Accountapprove/>}
+    element: <Accountapprovehome />, children: [
+      { path: '/admin/accountApprove', element: <Accountapprove /> }
     ]
 
 
   },
   {
+    path: "/admin/allAccountDetails",
+    element: <Accountdetailshome />, children: [
+      { path: '/admin/allAccountDetails', element: <Accountdetails /> }
+    ]
+  },
+  {
+    path: "/admin/allLoanDetails",
+    element: <Accountdetailshome />, children: [
+      { path: '/admin/allLoanDetails', element: <Loandetails /> }
+    ]
+  },
+  {
     path: "/userDashboard",
-    element: <UserHome/>, children:[{
-      path : "/userDashboard",
-      element : <User/>
+    element: <UserHome />, children: [{
+      path: "/userDashboard",
+      element: <User />
     },
     {
-      path : "/userDashboard/loan",
-      element : <Loan/>, children:[{
-        path : "/userDashboard/loan/personalLoan",
-        element : <PersonalLoan/>
+      path: "/userDashboard/loan",
+      element: <Loan />, children: [{
+        path: "/userDashboard/loan/personalLoan",
+        element: <PersonalLoan />
       },
       {
-        path : "/userDashboard/loan/homeLoan",
-        element : <HomeLoan/>
+        path: "/userDashboard/loan/homeLoan",
+        element: <HomeLoan />
       },
       {
-        path : "/userDashboard/loan/goldLoan",
-        element : <GoldLoan/>
+        path: "/userDashboard/loan/goldLoan",
+        element: <GoldLoan />
       }
 
-      
-    ]
+
+      ]
     }
-  ]
+    ]
 
   }
 
